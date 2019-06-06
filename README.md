@@ -1,5 +1,7 @@
 # Adversarial mixup resynthesizers
 
+<img src="https://github.com/christopher-beckham/amr/raw/dev/figures/mixup_anim.gif" width=225 /> <img src="https://github.com/christopher-beckham/amr/raw/dev/figures/mixup3_anim.gif" width=225 /> <img src="https://github.com/christopher-beckham/amr/raw/dev/figures/fm_anim.gif" width=225 />
+
 In this paper, we explore new approaches to combining information encoded within the learned representations of autoencoders. We explore models that are capable of combining the attributes of multiple inputs such that a resynthesised output is trained to fool an adversarial discriminator for real versus synthesised data. Furthermore, we explore the use of such an architecture in the context of semi-supervised learning, where we learn a mixing function whose objective is to produce interpolations of hidden states, or masked combinations of latent representations that are consistent with a conditioned class label. We show quantitative and qualitative evidence that such a formulation is an interesting avenue of research.
 
 <img src="https://github.com/christopher-beckham/amr/raw/dev/figures/model.png" width=768px />
@@ -27,7 +29,7 @@ For this iteration of the code, there is no need to download external datasets s
 ## Running experiments
 
 The experiment scripts can be found in the `exps` folder. Simply `cd` into this folder and run `bash <folder_name>/<script_name>.sh`. Experiments for Table 1
-in the paper correspond to the folders `mnist_downstream`, `kmnist_downstream`, and `svhn32_downstream`. For Table 2, consult `svhn32_ablation_downstream`. For Table 3, consult `svhn256_downstream`.
+in the paper correspond to the folders `mnist_downstream`, `kmnist_downstream`, and `svhn32_downstream`. For Table 3, consult `svhn256_downstream`.
 
 ### Training the models
 
@@ -88,6 +90,7 @@ results folder. The number of samples used for interpolation is dependent on `--
   - Generator code: https://github.com/christopher-beckham/amr/blob/dev/architectures/arch_kyle.py#L21-L96
   - Discriminator code: https://github.com/christopher-beckham/amr/blob/dev/architectures/arch_kyle.py#L98-L108
 - ACAI's regularisation term has not been implemented, so it's not a completely faithful reproduction of their model. We will address this issue.
+- Having batch norm in the generator appears to generate funky artifacts (or at least it was the case on our qualitative experiments on CelebA/Zappos in the paper). Instead we opted for instance norm.
 
 ## Troubleshooting
 
